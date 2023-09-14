@@ -1,0 +1,3 @@
+[submodule "Plugins/UnityVersionControl"]
+	path = Plugins/UnityVersionControl
+	url = https://github.com/PlasticSCM/UEPlasticPlugin.git
