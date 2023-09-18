@@ -5,7 +5,7 @@ set ROOTPATH=%~dp0
 
 pushd %ROOTPATH%
 
-REM Default to the latest Unreal Engine 5 version but can be overriden to any other version
+REM Default to the oldest Unreal Engine 5 version but can be overriden to any other version
 if [%1] == [] (
   set ENGINE=5.0
 ) else (
@@ -32,7 +32,7 @@ for %%i in ("%UPROJECT%") do (
   set PROJECT=%%~ni
 )
 
-echo Building  %UPROJECT% (project '%PROJECT%')
+echo Build %UPROJECT% (project '%PROJECT%')
 
 echo on
 %UBT% %UPROJECT% Win64 Development %PROJECT%Editor
