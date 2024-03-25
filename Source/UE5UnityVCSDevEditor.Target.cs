@@ -9,8 +9,12 @@ public class UE5UnityVCSDevEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "UE5UnityVCSDev" } );
-		
+
+		// Required starting from UE 5.4
+		WindowsPlatform.bStrictConformanceMode = true;
+
+		ExtraModuleNames.Add("UE5UnityVCSDev");
+
 		// Uncomment to rebuild the whole project without Unity Build, compiling each cpp source file individually, in order to test Includ Whay You Use (IWYU) policy
 		// WARNING: don't uncomment on UnrealEngine Source Build, else you will trigger a full new Engine build (but easy to revert, will just relink 1200 lib/dll)
 		bUseUnityBuild = false;
