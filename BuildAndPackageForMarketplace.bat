@@ -50,8 +50,6 @@ REM
 REM #################
 REM
 REM The Unreal Engine Marketplace only allow to submit new version for the last 3 Unreal versions
-REM call :BuildAndPackage 5.0
-call :BuildAndPackage 5.1
 call :BuildAndPackage 5.2
 call :BuildAndPackage 5.3
 call :BuildAndPackage 5.4
