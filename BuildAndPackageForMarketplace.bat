@@ -47,18 +47,21 @@ if [%GIT_CLEAN_RESET%] == [] (
 
 
 REM
-REM #################
+REM #####################
 REM
 REM The Unreal Engine Marketplace only allow to submit new version for the last 3 Unreal versions
-call :BuildAndPackage 5.2
 call :BuildAndPackage 5.3
 call :BuildAndPackage 5.4
+
+REM NOTE: Unreal 5.5 requires C++20 if not compiling with Unity Builds, we have to edit "UE5PlasticPluginDevEditor.Target.cs" manually before continuing!
+REM set /p PAUSE="WARNING: you have to edit Source\UE5PlasticPluginDevEditor.Target.cs and uncomment CppStandard = CppStandardVersion.Cpp20; before compiling for UE5.5 (ENTER)"
+call :BuildAndPackage 5.5
 REM
 REM Done
 REM
 
 echo .
-echo NOTE: After validation, publish to github and add link to the marketplace
+echo NOTE: After validation, add the source package to the corresponding github release and post to the Marketplace the links to these
 exit /b %ERRORLEVEL%
 
 
@@ -88,7 +91,7 @@ set ARCHIVE_NAME_REL=UE%UNREAL_ENGINE%_UnityVersionControl-%VERSION%.zip
 
 echo on
 del ..\%ARCHIVE_NAME_REL%
-..\Tools\7-Zip\x64\7za.exe a -tzip ..\%ARCHIVE_NAME_REL% UnityVersionControl -xr!Binaries -xr!Intermediate -xr!Screenshots -xr!.editorconfig -xr!".git*" -xr!_config.yml -xr!README.md -xr!"*.pdb"
+..\Tools\7-Zip\x64\7za.exe a -tzip ..\%ARCHIVE_NAME_REL% UnityVersionControl -xr!Binaries -xr!Intermediate -xr!Screenshots -xr!.editorconfig -xr!".git*" -xr!"cm.log.conf" -xr!_config.yml -xr!README.md -xr!"*.pdb"
 @echo off
 
 cd ..
